@@ -1,0 +1,35 @@
+db.createCollection("flights", {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: [
+        'flight_number',
+        'carrier',
+        'origin',
+        'destination',
+        'departure',
+        'arrival'
+      ],
+      properties: {
+        flight_number: {
+          bsonType: 'string'
+        },
+        carrier: {
+          bsonType: 'string'
+        },
+        origin: {
+          bsonType: 'string'
+        },
+        destination: {
+          bsonType: 'string'
+        },
+        departure: {
+          bsonType: 'date'
+        },
+        arrival: {
+          bsonType: 'date'
+        }
+      }
+    } 
+  }
+})
