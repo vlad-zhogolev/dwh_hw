@@ -26,7 +26,8 @@ db.createCollection("flights", {
         'origin',
         'destination',
         'departure',
-        'arrival'
+        'arrival',
+        'duration'
       ],
       properties: {
         flight_number: {
@@ -46,6 +47,10 @@ db.createCollection("flights", {
         },
         arrival: {
           bsonType: 'date'
+        },
+        duration: {
+          bsonType: 'int',
+          minimum: NumberInt(0)
         }
       }
     } 
@@ -132,9 +137,9 @@ db.createCollection("users", {
 });
 
 db.flights.insertMany([ 
-	{ flight_number: "BA 133", carrier: "BA", origin: "CDG", destination: "LHR", departure: new ISODate("2019-06-11T03:30:00Z"), arrival: new ISODate("2019-06-11T07:40:00Z")}, 
-	{ flight_number: "UA 177", carrier: "UA", origin: "LAX", destination: "JFK", departure: new ISODate("2019-09-11T03:30:00Z"), arrival: new ISODate("2019-09-11T07:40:00Z")},
-	{ flight_number: "UA 166", carrier: "RU", origin: "LAX", destination: "JFK", departure: new ISODate("2019-11-11T03:30:00Z"), arrival: new ISODate("2019-12-11T07:40:00Z")}  
+	{ flight_number: "BA 133", carrier: "BA", origin: "CDG", destination: "LHR", departure: new ISODate("2019-06-11T03:30:00Z"), arrival: new ISODate("2019-06-11T07:40:00Z"), duration: NumberInt(7200)}, 
+	{ flight_number: "UA 177", carrier: "UA", origin: "LAX", destination: "JFK", departure: new ISODate("2019-09-11T03:30:00Z"), arrival: new ISODate("2019-09-11T07:40:00Z"), duration: NumberInt(9800)},
+	{ flight_number: "UA 166", carrier: "RU", origin: "LAX", destination: "JFK", departure: new ISODate("2019-11-11T03:30:00Z"), arrival: new ISODate("2019-12-11T07:40:00Z"), duration: NumberInt(12000)}  
 ]);
 
 var names = [ 
