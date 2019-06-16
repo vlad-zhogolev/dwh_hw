@@ -221,6 +221,27 @@ makeFriends(names[1], names[3])
 makeFriends(names[2], names[3])
 makeFriends(names[3], names[4])
 
+db.createView("leader_board","users",[{
+  $unwind : "$flights" 
+},{
+  $lookup:{
+    from : "flights",
+    localField : "flights.flight_id",
+    foreignField : "_id",
+    as : "flight_info"
+  }
+},{
+  $unwind : "$flight_info" 
+},{
+  $group : {
+    _id : "$_id",
+    duration: { $sum: "$flight_info.duration" },
+    name: { $first: "$name" }
+  }
+},{
+  $sort: {duration: -1}
+}])
 
 var flights = db.flights.find()
 var users = db.users.find()
+var leader_board = db.leader_board.find()
