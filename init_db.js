@@ -242,7 +242,8 @@ db.createView("leader_board","users",[{
   $group : {
     _id : "$_id",
     duration: { $sum: "$flight_info.duration" },
-    name: { $first: "$name" }
+    name: { $first: "$name" },
+    ps_search: { $first: "$ps_search" }
   }
 },{
   $sort: {duration: -1}
