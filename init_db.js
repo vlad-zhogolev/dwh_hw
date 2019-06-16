@@ -156,7 +156,7 @@ var statuses = [
 db.users.insertMany([{ 
   fb_id : NumberInt(1),
   name : names[0],
-  flights : [{cabin : "e", seat : "16c"}, {cabin : "pe", seat : "8b"}],
+  flights : [],
   friends : [],
   status : statuses[0],
   ps_search : NumberInt(3),
@@ -164,7 +164,7 @@ db.users.insertMany([{
  }, { 
   fb_id : NumberInt(2),
   name : names[1],
-  flights : [{cabin : "e", seat : "15c"}],
+  flights : [],
   friends : [],
   status : statuses[1],
   ps_search : NumberInt(3),
@@ -172,7 +172,7 @@ db.users.insertMany([{
   }, { 
   fb_id : NumberInt(3),
   name : names[2],
-  flights : [{cabin : "e", seat : "14c"}],
+  flights : [],
   friends : [],
   status : statuses[2],
   ps_search : NumberInt(3),
@@ -180,7 +180,7 @@ db.users.insertMany([{
   }, { 
   fb_id : NumberInt(4),
   name : names[3],
-  flights : [{cabin : "e", seat : "13c"}],
+  flights : [],
   friends : [],
   status : statuses[3],
   ps_search : NumberInt(3),
@@ -188,7 +188,7 @@ db.users.insertMany([{
   }, { 
   fb_id : NumberInt(5),
   name : names[4],
-  flights : [{cabin : "e", seat : "12c"}],
+  flights : [],
   friends : [],
   status : statuses[4],
   ps_search : NumberInt(3),
