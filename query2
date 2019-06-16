@@ -16,14 +16,15 @@ db.users.aggregate([{
 	},{
 		$project : {
 			"_id" : 0,
-			"flights.cabin" : 1,
-			"flights.seat" : 1,
-			"users_flights.flight_number" : 1,
-			"users_flights.carrier" : 1,
-			"users_flights.origin" : 1,
-			"users_flights.destination" : 1,
-			"users_flights.departure" : 1,
-			"users_flights.arrival" : 1
+			"cabin" : "$flights.cabin",
+			"seat"  : "$flights.seat",
+			"duration" : "$flights.duration",
+			"flight_number" : "$users_flights.flight_number",
+			"carrier" : "$users_flights.carrier",
+			"origin" : "$users_flights.origin",
+			"destination" : "$users_flights.destination",
+			"departure" : "$users_flights.departure",
+			"arrival" : "$users_flights.arrival"
 		}
 	}
 ])
