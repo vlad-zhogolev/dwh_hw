@@ -1,0 +1,17 @@
+db.users.aggregate([{
+		$unwind: "$flights"
+	}, {
+		$lookup:{
+			from : "flights",
+			localField : "flights.flight_id",
+			foreignField : "_id",
+			as : "users_flights"
+		}
+	},{
+		$unwind: "$users_flights"
+	},{
+		$match : {
+			"users_flights.departure" : {$gte : new Date()}
+		}
+	}
+])
