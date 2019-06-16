@@ -222,7 +222,10 @@ makeFriends(names[2], names[3])
 makeFriends(names[3], names[4])
 
 db.createView("leader_board","users",[{
-  $unwind : "$flights" 
+  $unwind : {
+      path: "$flights" ,
+      preserveNullAndEmptyArrays: true
+    }
 },{
   $lookup:{
     from : "flights",
@@ -231,7 +234,10 @@ db.createView("leader_board","users",[{
     as : "flight_info"
   }
 },{
-  $unwind : "$flight_info" 
+  $unwind : {
+      path: "$flight_info",
+      preserveNullAndEmptyArrays: true
+    }
 },{
   $group : {
     _id : "$_id",
@@ -240,7 +246,8 @@ db.createView("leader_board","users",[{
   }
 },{
   $sort: {duration: -1}
-}])
+}
+])
 
 var flights = db.flights.find()
 var users = db.users.find()
