@@ -13,5 +13,17 @@ db.users.aggregate([{
 		$match : {
 			"users_flights.departure" : {$gte : new Date()}
 		}
+	},{
+		$project : {
+			"_id" : 0,
+			"flights.cabin" : 1,
+			"flights.seat" : 1,
+			"users_flights.flight_number" : 1,
+			"users_flights.carrier" : 1,
+			"users_flights.origin" : 1,
+			"users_flights.destination" : 1,
+			"users_flights.departure" : 1,
+			"users_flights.arrival" : 1
+		}
 	}
 ])
