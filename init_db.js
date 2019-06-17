@@ -317,3 +317,12 @@ friends = db.users.find({'_id':{'$in': friend_ids}, 'friends.friend': user._id},
 var flights = db.flights.find()
 var users = db.users.find()
 var leader_board = db.leader_board.find()
+
+var path_to_queries = "/data/db/my_queries/query"
+load(path_to_queries + "1.js")
+load(path_to_queries + "2.js")
+load(path_to_queries + "3.js")
+load(path_to_queries + "4.js")
+//load(path_to_queries + "5.js")
+load(path_to_queries + "6.js")
+load(path_to_queries + "7.js")
