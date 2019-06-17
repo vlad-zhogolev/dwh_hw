@@ -196,7 +196,7 @@ db.users.insertMany([{
   flights : [],
   friends : [],
   status : statuses[4],
-  ps_search : NumberInt(3),
+  ps_search : NumberInt(1),
   ps_nearby : NumberInt(0)
 }]);
 
@@ -215,7 +215,7 @@ addFlight(names[4], "UA 166", "f", "4a")
 
 
 makeFriends(names[0], names[1])
-makeFriends(names[0], names[4])
+//makeFriends(names[1], names[4])
 makeFriends(names[1], names[2])
 makeFriends(names[1], names[3])
 makeFriends(names[2], names[3])
