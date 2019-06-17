@@ -249,6 +249,71 @@ db.createView("leader_board","users",[{
 }
 ])
 
+db.createView("friends","users",[{
+  $unwind : "$friends"
+},
+{$project: {
+friend_id: "$friends.friend"
+}}])
+
+db.createView("user_friends","friends",[{
+    $lookup:
+        {
+          from: 'friends',
+          localField: 'friend_id',
+          foreignField: '_id',
+          as: "RightTableData"
+        }
+},  
+{$unwind :"$RightTableData" },
+{ 
+     $project: { 
+     friend_id: 1,
+            mutual: { $cond: [ { $eq: [ '$_id', '$RightTableData.friend_id' ] }, 1, 0 ] } 
+        } 
+},
+{$match : { mutual: 1}}])
+
+db.createView("friend_requests","friends",[{
+    $lookup:
+        {
+          from: 'friends',
+          localField: 'friend_id',
+          foreignField: '_id',
+          as: "RightTableData"
+        }
+},  
+{$unwind : {
+  path: "$RightTableData",
+  preserveNullAndEmptyArrays: true
+} },
+{ 
+     $project: { 
+     friend_id: 1,
+            mutual: { $cond: [ {$and: [
+            { $eq: [ '$_id', '$RightTableData.friend_id' ] }, 
+            { $eq: [ '$friend_id', '$RightTableData._id' ] }
+            ]
+            }, 1, 0 ] } 
+        } 
+},
+{
+$group: {
+_id: {
+user_id: '$_id', friend_id: '$friend_id'},
+mutual: {
+        $max: '$mutual'
+    }
+}
+},
+{$match: {mutual: 0}},
+{$project: {_id: '$_id.user_id', friend_id: '$_id.friend_id'}}])
+
+user = db.users.findOne({_id: ObjectId("5d04e39f56cb9626a05e93f3")})
+friend_ids = user.friends.map(function(f) { return f.friend; })
+friends = db.users.find({'_id':{'$in': friend_ids}, 'friends.friend': user._id}, {_id: 1}).toArray().map(function(f) { return f._id; })
+
+
 var flights = db.flights.find()
 var users = db.users.find()
 var leader_board = db.leader_board.find()
