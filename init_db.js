@@ -196,7 +196,7 @@ db.users.insertMany([{
   flights : [],
   friends : [],
   status : statuses[4],
-  ps_search : NumberInt(3),
+  ps_search : NumberInt(1),
   ps_nearby : NumberInt(0)
 }]);
 
