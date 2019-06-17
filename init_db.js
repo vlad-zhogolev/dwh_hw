@@ -309,7 +309,7 @@ mutual: {
 {$match: {mutual: 0}},
 {$project: {_id: '$_id.user_id', friend_id: '$_id.friend_id'}}])
 
-user = db.users.findOne({_id: ObjectId("5d04e39f56cb9626a05e93f3")})
+user = db.users.findOne({name: names[0]})
 friend_ids = user.friends.map(function(f) { return f.friend; })
 friends = db.users.find({'_id':{'$in': friend_ids}, 'friends.friend': user._id}, {_id: 1}).toArray().map(function(f) { return f._id; })
 
