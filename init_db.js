@@ -147,7 +147,9 @@ var names = [
 	"Roy Batty", 
 	"Darth Vader", 
 	"John Wick",
-	"Blondie aka Man with No Name"
+	"Blondie aka Man with No Name",
+  "James McAvoy",
+  "Michael Fassbender"
 ]
 
 var statuses = [ 
@@ -155,7 +157,9 @@ var statuses = [
 	"All those moments will be lost in time, like tears in rain.", 
 	"I'am your father", 
 	"Fortes fortuna adiuvat.",
-	"You see, in this world there's two kinds of people, my friend: Those with loaded guns and those who dig. You dig."
+	"You see, in this world there's two kinds of people, my friend: Those with loaded guns and those who dig. You dig.",
+  "A story about my life would be utterly dull.",
+  "Lean on sardines, dudes. They say there is calcium."
 ]
 
 db.users.insertMany([{ 
@@ -198,6 +202,22 @@ db.users.insertMany([{
   status : statuses[4],
   ps_search : NumberInt(1),
   ps_nearby : NumberInt(0)
+}, { 
+  fb_id : NumberInt(6),
+  name : names[5],
+  flights : [],
+  friends : [],
+  status : statuses[5],
+  ps_search : NumberInt(2),
+  ps_nearby : NumberInt(0)
+}, { 
+  fb_id : NumberInt(7),
+  name : names[6],
+  flights : [],
+  friends : [],
+  status : statuses[6],
+  ps_search : NumberInt(2),
+  ps_nearby : NumberInt(0)
 }]);
 
 
@@ -213,6 +233,10 @@ addFlight(names[3], "UA 166", "b", "9d")
 
 addFlight(names[4], "UA 166", "f", "4a")
 
+addFlight(names[5], "BA 133", "e", "17c")
+
+addFlight(names[6], "UA 177", "e", "18e")
+
 
 makeFriends(names[0], names[1])
 //makeFriends(names[1], names[4])
@@ -220,6 +244,9 @@ makeFriends(names[1], names[2])
 makeFriends(names[1], names[3])
 makeFriends(names[2], names[3])
 makeFriends(names[3], names[4])
+makeFriends(names[4], names[5])
+makeFriends(names[4], names[6])
+makeFriends(names[5], names[6])
 
 db.createView("leader_board","users",[{
   $unwind : {
