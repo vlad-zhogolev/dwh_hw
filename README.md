@@ -23,3 +23,13 @@ settings.
 User can log in with Facebook to be able to see the distances his friends traveled over some
 period of time and to compete with them in the friends leaderboard.
 In both cases users are compared by flight distances they traveled in the current year
+
+## Queries
+1. Add new flight for user.
+2. Showing upcoming flights in schedule.
+3. Showing leaderboards according to privacy settings.
+4. Perform user search for a given input value according to privacy settings.
+5. Discover passengers in the same airport\on the same flight for a given flight
+6. Get outcoming/incoming unapproved friend requests.
+7. Creating friend connection after logging in with facebook.
+8. Show info about flights originating in specific airport.
